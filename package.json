@@ -2,7 +2,6 @@
   "name": "shopping",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +14,10 @@
   "bugs": {
     "url": "https://github.com/mbbn/shopping/issues"
   },
-  "homepage": "https://github.com/mbbn/shopping#readme"
+  "homepage": "https://github.com/mbbn/shopping#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
 }
