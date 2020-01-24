@@ -8,25 +8,28 @@ import {AppBar, Fade, LinearProgress, Slide, useScrollTrigger} from "@material-u
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import {AccountCircle, Add} from "@material-ui/icons";
-import {green, grey} from "@material-ui/core/colors";
-import Slider from 'infinite-react-carousel';
+import {AccountCircle} from "@material-ui/icons";
+import {ReactSVG} from "react-svg";
 
 type splashClasses = 'root';
 const SplashStyled = createStyles<splashClasses>(theme => ({
     root:{
         width: '100%',
         height: '100vh',
-        background: 'radial-gradient(' + grey["200"] + ', #FFFFFF)'
+        background: 'radial-gradient(' + theme.palette.primary["500"] + ', '+theme.palette.primary["400"]+')'
     },
 }));
 
-type classes = 'root' | 'menuButton' | 'title' | 'banner' | 'avatar';
+type classes = 'root' | 'header' | 'menuButton' | 'title' | 'banner' | 'avatar';
 const Styled = createStyles<classes>(theme => ({
     root: {
-        paddingTop: 55,
         flexGrow: 1,
         direction: theme.direction
+    },
+    header: {
+        height: 80,
+        textAlign: 'end',
+        background: 'url("images/header-background.png")'
     },
     menuButton: {
         marginLeft: theme.spacing(2)
@@ -89,7 +92,7 @@ export default class BaseEntryPoint extends React.Component<Props, any> {
             <div className={classes.root}>
                 <LinearProgress/>
                 <div style={{display: 'block',textAlign: 'center',width: '100%', top: '30vh', position: 'absolute'}}>
-                    <img src={'images/material.png'}/>
+                    <img src={'images/material.png'} alt={''}/>
                     {/*<span style={{fontFamily: 'IRANSans', fontSize:'2em', display: 'block'}}>Application Title</span>*/}
                 </div>
             </div>
@@ -101,8 +104,9 @@ export default class BaseEntryPoint extends React.Component<Props, any> {
         return <Styled>{({classes}) => (
             <Fade enter={true} in={userAgentIsValid && currentUserLoaded} timeout={1000}>
                 <div className={classes.root}>
-                    {this.renderToolbar()}
                     {this.renderHeader()}
+                    {this.renderToolbar()}
+                    {this.renderBanner()}
                     {/*<Drawer*/}
                     {/*    className={classes.drawer}*/}
                     {/*    variant="permanent"*/}
@@ -119,11 +123,19 @@ export default class BaseEntryPoint extends React.Component<Props, any> {
         )}</Styled>;
     }
 
+    renderHeader() {
+        return <Styled>{({classes}) => (
+            <div className={classes.header}>
+                <img src={'images/header.png'}/>
+            </div>
+        )}</Styled>;
+    }
+
     renderToolbar() {
         return <Styled>{({classes}) => (
             <Slide appear={true} direction={"down"} in={true}>
-                <AppBar position="fixed">
-                    <Toolbar>
+                <AppBar position="relative">
+                    <Toolbar variant={"dense"}>
                         <Typography variant="h6" className={classes.title}>
                             Photos
                         </Typography>
@@ -143,14 +155,15 @@ export default class BaseEntryPoint extends React.Component<Props, any> {
         )}</Styled>;
     }
 
-    renderHeader() {
+    renderBanner() {
         const { window } = this.props;
         const trigger = useScrollTrigger({ target: window ? window() : undefined });
         return <Styled>{({classes}) => (
-            <Slider dots>
-                <img className={classes.banner} src={'images/bg3.jpg'}/>
-                <img className={classes.banner} src={'images/bg4.jpg'}/>
-            </Slider>
+            <Fade appear={true} in={!trigger}>
+                <div className={classes.banner}>
+                    <ReactSVG src={'images/banner.svg'}/>
+                </div>
+            </Fade>
         )}</Styled>;
     }
 }
