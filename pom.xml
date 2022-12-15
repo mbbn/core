@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <springVersion>5.2.2.RELEASE</springVersion>
+        <springVersion>5.2.20.RELEASE</springVersion>
         <springDataVersion>2.2.3.RELEASE</springDataVersion>
         <hibernateVersion>5.4.10.Final</hibernateVersion>
     </properties>
