@@ -1,19 +1,41 @@
-# Spring Boot Maven Project
+# Spring Boot + React Project
 
-این پروژه با **Spring Boot** و **Maven** ساخته شده است.
+این پروژه شامل یک **بک‌اند Spring Boot** و یک **فرانت‌اند React (Vite)** است.
 
-## اجرا
+## اجرای بک‌اند
 
 ```bash
 mvn spring-boot:run
 ```
 
-سپس این آدرس را باز کنید:
+بک‌اند روی آدرس `http://localhost:8080` اجرا می‌شود.
 
-- `http://localhost:8080/`
+## اجرای فرانت‌اند React
 
-## تست
+ابتدا وابستگی‌های فرانت‌اند را نصب کنید:
+
+```bash
+cd frontend
+npm install
+```
+
+سپس پروژه React را اجرا کنید:
+
+```bash
+npm run dev
+```
+
+فرانت‌اند روی `http://localhost:5173` اجرا می‌شود و درخواست‌های `/api` را به بک‌اند پراکسی می‌کند.
+
+## تست بک‌اند
 
 ```bash
 mvn test
+```
+
+## بیلد فرانت‌اند
+
+```bash
+cd frontend
+npm run build
 ```
